@@ -1,0 +1,67 @@
+﻿<Page x:Class="simplymusic.libaryPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:simplymusic"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="libaryPage">
+
+    <Grid Background="#F1F1F1">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel HorizontalAlignment="Right" VerticalAlignment="Center" Orientation="Horizontal">
+            <Button x:Name="clearSearchBTN" Margin="5" Click="clearSearchBTN_Clicked">Clear</Button>
+            <TextBox x:Name="searchTXTBox" Width="100" Margin="5" TextChanged="searchTXTBox_TextChanged">Search</TextBox>
+        </StackPanel>
+     
+      
+        <DataGrid x:Name="musicLibary" AutoGenerateColumns="False" MouseDoubleClick="Row_MouseDoubleClick" IsReadOnly="True" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Row="1">
+            <DataGrid.Columns>
+                <DataGridTemplateColumn Width="Auto">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Click="playBN_Colmn">Play</Button>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn Width="Auto">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Click="addToBN_Colmn">add To</Button>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTextColumn Header="Title" Binding="{Binding title}" Width="*"/>
+                <DataGridTextColumn Header="Artist" Binding="{Binding artist}" Width="*"/>
+                <DataGridTextColumn Header="Album" Binding="{Binding album}" Width="*"/>
+                <DataGridTextColumn Header="Duration" Binding="{Binding duration}" Width="*"/>
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <Grid x:Name="PlaylistAddDialog" Visibility="Hidden" IsEnabled="False" Background="SlateGray" Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="100"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="100"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="100"/>
+            </Grid.RowDefinitions>
+
+            <Button Grid.Column="2" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="5" x:Name="closeDialogBTN" Click="closeDialogBTN_Clicked" >Close</Button>
+
+            <ListBox x:Name="PlaylistKeysListBox" Grid.Column="1" Margin="5" Background="Gray"  Foreground="White" SelectionChanged="PlaylistKeysListBox_SelectionChanged"></ListBox>
+
+            <TextBox x:Name="playlistKeyInput" Grid.Column="1" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="left"  Width="500"></TextBox>
+            <Button x:Name="addPlaylistKeyBTN" Grid.Column="1" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="5" Click="addPlaylistKeyBTN_Clicked">Add New</Button>
+        </Grid>
+
+    </Grid>
+</Page>

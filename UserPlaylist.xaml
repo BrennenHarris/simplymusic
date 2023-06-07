@@ -1,0 +1,54 @@
+﻿<Page x:Class="simplymusic.UserPlaylist"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:simplymusic"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="UserPlaylist">
+
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+
+        <ListView x:Name="playlistListBox"  SelectionChanged="playlistListBox_SelectionChanged">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Text="{Binding}" Margin="5"/>
+                        <Button Content="Delete" Grid.Column="1" Click="DeleteButton_Click" Margin="5" />
+                    </Grid>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+        <!--<ListBox x:Name="playlistListBox" SelectionChanged="playlistListBox_SelectionChanged">
+
+        </ListBox>-->
+        
+        <DataGrid Visibility="Hidden" IsEnabled="False" x:Name="playlistLibary" AutoGenerateColumns="False" IsReadOnly="True">
+            <DataGrid.Columns>
+                <DataGridTemplateColumn>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Click="playBN_Colmn">Play</Button>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTextColumn Header="Title" Binding="{Binding title}"/>
+                <DataGridTextColumn Header="Artist"  Binding="{Binding artist}"/>
+                <DataGridTextColumn Header="Album"  Binding="{Binding album}"/>
+                <DataGridTextColumn Header="Duration"  Binding="{Binding duration}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+
+    </Grid>
+</Page>
