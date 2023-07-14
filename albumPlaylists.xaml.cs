@@ -22,7 +22,8 @@ namespace simplymusic
     public partial class albumPlaylists : Page
     {
         private List<string> Albums { get; set; } = new List<string>();
-        static HashSet<Song> songHashset = new HashSet<Song>() { };
+        static List<Song> songs = new List<Song>();
+        //static HashSet<Song> songHashset = new HashSet<Song>() { };
 
         public albumPlaylists()
         {
@@ -69,27 +70,26 @@ namespace simplymusic
             albumLibary.Visibility = Visibility.Visible;
 
             albumLibary.Items.Clear();
-            List<Song> songs = LibarySongs.GetSongsByAlbum(selectedAlbum);
+            List<Song> currsongs = LibarySongs.GetSongsByAlbum(selectedAlbum);
 
             //Order songs list by track number
-            songs = songs.OrderBy(o => o.tracknumber).ToList();
+            songs = currsongs.OrderBy(o => o.tracknumber).ToList();
             albumLibary.ItemsSource = songs;
-            songHashset = new HashSet<Song>(songs);
+          
         }
 
         private void playBN_Colmn(object sender, RoutedEventArgs e)
         {
             Song selectedSong = (Song)albumLibary.SelectedItem;
             SongHandler.loadSong(selectedSong);
-            LibarySongs.setCurrentList(songHashset);
+            LibarySongs.setCurrentList(songs);
         }
 
         private void getSelectedSong()
         {
-            if (songHashset.Contains(SongHandler.currSong))
-            {
+          
                 albumLibary.SelectedItem = SongHandler.currSong;
-            }
+            
 
         }
     }

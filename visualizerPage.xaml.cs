@@ -36,7 +36,6 @@ namespace simplymusic
             try
             {
 
-
                 if (SongHandler.getAlbumCover() != null)
                 {
                     string albumCoverPath = SongHandler.getAlbumCover();

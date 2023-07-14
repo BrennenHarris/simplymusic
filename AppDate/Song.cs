@@ -6,7 +6,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
-namespace simplymusic
+namespace simplymusic.AppDate
 {
     public class Song : IComparable<Song>
     {
@@ -14,11 +14,11 @@ namespace simplymusic
         {
             this.title = title;
             this.album = album;
-            this.duration = time;
-            this.artist = firstPerformer; 
-            this.albumCoverPath = albumPath;
-            this.tracknumber = trackNumber;
-            this.path = file;
+            duration = time;
+            artist = firstPerformer;
+            albumCoverPath = albumPath;
+            tracknumber = trackNumber;
+            path = file;
         }
 
         public string title { get; set; }
@@ -35,12 +35,12 @@ namespace simplymusic
         public int CompareTo(Song other)
         {
             // Compare the entire song objects
-            int result = string.Compare(this.artist, other.artist);
+            int result = string.Compare(artist, other.artist);
 
             if (result == 0)
             {
                 // If the artists are the same, compare the song titles
-                result = string.Compare(this.title, other.title);
+                result = string.Compare(title, other.title);
             }
 
             return result;
@@ -49,7 +49,7 @@ namespace simplymusic
         public string getFileExtension()
         {
             string pattern = @"\.([^.]+)$"; // Regular expression pattern to match the file extension
-            Match match = Regex.Match(this.path, pattern);
+            Match match = Regex.Match(path, pattern);
 
             if (match.Success)
             {

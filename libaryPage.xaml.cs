@@ -29,7 +29,7 @@ namespace simplymusic
     {
         
         List<Song> songs = new List<Song>();
-        static HashSet<Song> songHashset = new HashSet<Song>() { };
+        //static HashSet<Song> songHashset = new HashSet<Song>() { };
        
 
         public libaryPage()
@@ -53,8 +53,8 @@ namespace simplymusic
         private void playBN_Colmn(object sender, RoutedEventArgs e)
         {
             Song selectedSong = (Song)musicLibary.SelectedItem;
-            songHashset = new HashSet<Song>(songs);
-            LibarySongs.setCurrentList(songHashset);
+            //songHashset = new HashSet<Song>(songs);
+            LibarySongs.setCurrentList(songs);
 
 
             sendSong(selectedSong);

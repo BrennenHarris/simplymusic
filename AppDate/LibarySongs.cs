@@ -290,13 +290,13 @@ namespace simplymusic.AppDate
             }
             saveSong();
         }
-        public static void setCurrentList(HashSet<Song> songs)
+        public static void setCurrentList(List<Song> currentSongs)
         {
-            songHashset = songs;
+            currentSongs = songs;
         }
-        public static HashSet<Song> getCurrentList()
+        public static List<Song> getCurrentList()
         {
-            return songHashset;
+            return songs;
         }
 
 

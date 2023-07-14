@@ -27,7 +27,7 @@ namespace simplymusic
     /// </summary>
     public partial class playScreen : Window
     {
-        HashSet<Song> songHashset = new HashSet<Song>() { };
+        //HashSet<Song> songHashset = new HashSet<Song>() { };
         List<Song> songList = new List<Song>() { };
         bool shuffleOn = false;
         public DispatcherTimer timer;
@@ -93,13 +93,12 @@ namespace simplymusic
                 filePositionSlider.Value = 0;
             }
 
-            if (songHashset != null)
+            if (songList != null)
             {
-                songHashset = LibarySongs.getCurrentList();
+                songList = LibarySongs.getCurrentList();
 
-                if (songHashset.Contains(SongHandler.currSong))
-                {
-                    songList = songHashset.ToList();
+               
+                    
                     if (shuffleOn)
                     {
                         Random rnd = new Random();
@@ -133,7 +132,7 @@ namespace simplymusic
                     }
                    
 
-                }
+                
 
             }
 
@@ -147,13 +146,10 @@ namespace simplymusic
                 filePositionSlider.Value = 0;
             }
 
-            if (songHashset != null)
+            if (songList != null)
             {
-                songHashset = LibarySongs.getCurrentList();
-
-                if (songHashset.Contains(SongHandler.currSong))
-                {
-                    songList = songHashset.ToList();
+                songList = LibarySongs.getCurrentList();
+               
 
                     int currentIndex = songList.IndexOf(SongHandler.currSong);
                     int nextIndex = currentIndex - 1;
@@ -173,7 +169,7 @@ namespace simplymusic
                         startTimer();
 
                     }
-                }
+                
 
             }
 

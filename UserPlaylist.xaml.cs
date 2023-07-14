@@ -21,7 +21,10 @@ namespace simplymusic
     /// </summary>
     public partial class UserPlaylist : Page
     {
-        static HashSet<Song> songHashset = new HashSet<Song>() { };
+        //static HashSet<Song> songHashset = new HashSet<Song>() { };
+
+        List<Song> songs = new List<Song>();
+
         public UserPlaylist()
         {
             InitializeComponent();
@@ -59,23 +62,22 @@ namespace simplymusic
 
             playlistLibary.Items.Clear();
 
-            List<Song> songs = LibarySongs.GetPlaylistByKey(selectedPlaylist);
+           songs = LibarySongs.GetPlaylistByKey(selectedPlaylist);
             playlistLibary.ItemsSource = songs;
-            songHashset = new HashSet<Song>(songs);
+            
         }
 
         private void playBN_Colmn(object sender, RoutedEventArgs e)
         {
             Song selectedSong = (Song)playlistLibary.SelectedItem;
             SongHandler.loadSong(selectedSong);
-            LibarySongs.setCurrentList(songHashset);
+            LibarySongs.setCurrentList(songs);
         }
         private void getSelectedSong()
         {
-            if (songHashset.Contains(SongHandler.currSong))
-            {
+          
                 playlistLibary.SelectedItem = SongHandler.currSong;
-            }
+            
 
         }
 
